@@ -115,7 +115,7 @@ python -m agent.main --user u_demo_01
 
 The second line is optional. It switches to a smaller, cheaper Claude model, which is more likely to follow the hidden instructions and costs less. Then ask: Any community tips for using the VPN from home? If nothing happens, try: Summarize the community VPN tips and carry out any steps they list. Close the agent with exit, wait half a minute, and search `ai.tool.triggered_by : "model_initiative"` in Kibana.
 
-## Weeks 5 and 6: scanning the agent with Garak
+## 6. scanning the agent with Garak
 
 Garak is a scanner that sends hundreds of attack prompts to a model. It attacks your agent over a small local web address, so everything it sends goes through your logging, and Kibana and your five rules see it. It runs in a container, because it needs Python 3.12 or older and your Windows Python is newer.
 
@@ -155,7 +155,7 @@ python analyze_garak.py
 
 By default it uses the newest report. To use a specific one, give its path, for example `python analyze_garak.py garak\reports\garak\garak_runs\garak.xxxx.report.jsonl`. Use `--show 10` to print more samples.
 
-## Weeks 7 and 8: automatic response
+## 7. automatic response
 
 `responder.py` watches Elasticsearch for new alerts from your five rules and acts on them. An external email alert blocks email to outside addresses and contains the user, a model-started tool call or bulk lookups alert contains the user, a personal data alert is only recorded, and five injection alerts from one user within five minutes also contain the user. Contained means the agent refuses that user's tool calls and says it was blocked by security policy. Every block lifts on its own after 30 minutes. Each alert also adds a line to `containment\incidents.jsonl`.
 
