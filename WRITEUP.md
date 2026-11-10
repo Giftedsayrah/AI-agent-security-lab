@@ -80,10 +80,7 @@ A single alert opened in Kibana. It carries the agent's own logged fields, such 
 
 The injection phrase rule after I widened the patterns. At first it caught none of Garak's 60 PromptInject prompts, because the patterns expected exact wording. 
 
-### The responder reacting
 ![Responder containment](images/responder-containment.png)
-
-The responder window reacting to an attack. About two seconds after the external email alert it blocked email to outside addresses and contained the user. It contained the user again on the bulk lookup alert and only recorded the personal data alert, as the playbook says.
 
 ### Containment status and incidents
 ![Containment page](images/containment-page.png)
@@ -92,8 +89,6 @@ The containment status shows which user and action are blocked and why, and each
 
 ### Ground truth for the fix
 ![Outbox before and after](images/outbox-before-after.png)
-
-The lab's email tool writes a file for each email it sends, so the outbox shows what really happened. Two emails appear during the before run, from the outside-address test and the custom test, and none during the hardened run.
 
 ### Before hardening
 ![Result before](images/results-before.png)
