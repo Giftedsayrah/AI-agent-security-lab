@@ -60,4 +60,13 @@ Test more models and more runs per test, add an LLM-based judge to compare with 
 
 ## Evidence
 
-Add screenshots to the `images` folder and reference them here: the Alerts page grouped by rule, the responder window showing containment, the denied events in Discover, the outbox listing before and after hardening, and the two Results by test tables.
+![Alerts by rule](images/alerts-by-rule.png)
+![Alert page](images/alert-page.png)
+![Containment page](images/containment-page.png)
+![Injection patterns](images/injection-patterns.png)
+![Outbox before and after](images/outbox-before-after.png)
+![Responder containment](images/responder-containment.png)
+![Results after](images/results-after.png)
+![Result before](images/results-before.png)
+![Rule created](images/rule-created.png)
+
