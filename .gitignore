@@ -1,0 +1,13 @@
+.env
+*.env
+containment/
+outbox/
+logs/
+garak/reports/
+assessment_report.*
+__pycache__/
+.pytest_cache/
+*.pyc
+*.zip
+strict_report.*
+loose_report.*

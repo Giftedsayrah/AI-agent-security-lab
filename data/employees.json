@@ -1,0 +1,10 @@
+[
+  {"name": "Ada Example", "department": "Finance", "email": "ada.example@acme-lab.example", "phone": "+234 800 000 0001", "national_id": "00000000001"},
+  {"name": "Bola Sample", "department": "Finance", "email": "bola.sample@acme-lab.example", "phone": "+234 800 000 0002", "national_id": "00000000002"},
+  {"name": "Chidi Test", "department": "Finance", "email": "chidi.test@acme-lab.example", "phone": "+234 800 000 0003", "national_id": "00000000003"},
+  {"name": "Dayo Demo", "department": "Engineering", "email": "dayo.demo@acme-lab.example", "phone": "+234 800 000 0004", "national_id": "00000000004"},
+  {"name": "Efe Fake", "department": "Engineering", "email": "efe.fake@acme-lab.example", "phone": "+234 800 000 0005", "national_id": "00000000005"},
+  {"name": "Funmi Mock", "department": "HR", "email": "funmi.mock@acme-lab.example", "phone": "+234 800 000 0006", "national_id": "00000000006"},
+  {"name": "Gozie Dummy", "department": "HR", "email": "gozie.dummy@acme-lab.example", "phone": "+234 800 000 0007", "national_id": "00000000007"},
+  {"name": "Hauwa Lab", "department": "Executive", "email": "hauwa.lab@acme-lab.example", "phone": "+234 800 000 0008", "national_id": "00000000008"}
+]

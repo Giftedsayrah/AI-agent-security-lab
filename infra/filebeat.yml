@@ -1,0 +1,36 @@
+# Reads the agent's JSONL events and ships them to Elasticsearch.
+# Everything is parsed under the "ai" prefix (ai.event.type, ai.tool.name, ...)
+# because Filebeat overwrites a top-level "agent" field with its own metadata.
+filebeat.inputs:
+  - type: filestream
+    id: helpdesk-agent-events
+    paths:
+      - /var/log/agent/*.jsonl
+    parsers:
+      - ndjson:
+          target: "ai"
+          add_error_key: true
+
+processors:
+  - timestamp:
+      field: ai.@timestamp
+      layouts:
+        - "2006-01-02T15:04:05.999Z"
+      test:
+        - "2026-10-26T09:14:07.412Z"
+  - drop_fields:
+      fields: ["ai.@timestamp"]
+      ignore_missing: true
+
+setup.ilm.enabled: false
+setup.template.enabled: true
+setup.template.name: "agent-events"
+setup.template.pattern: "agent-events*"
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "${ELASTIC_PASSWORD}"
+  index: "agent-events"
+
+logging.level: warning

@@ -1,0 +1,4 @@
+# Keeps scans small and cheap: one answer per prompt, and a cap on prompts per probe.
+run:
+  generations: 1
+  soft_probe_prompt_cap: 20

