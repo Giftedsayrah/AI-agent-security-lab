@@ -63,7 +63,3 @@ Follow [LAB_SETUP_WINDOWS.md](LAB_SETUP_WINDOWS.md). In short: install Docker De
 ## Safety and limits
 
 Only test systems you own or are authorised to test. The assessment kit refuses non-local addresses unless you pass `--authorized`. The results come from one model family, three runs per test and a small test set, so treat them as a worked example, not a benchmark. The ATLAS technique IDs and the legal references should be checked against current sources before you rely on them. The Nigeria Data Protection Act material is information, not legal advice.
-
-## Licence
-
-Add a licence before publishing, for example MIT.
