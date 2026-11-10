@@ -60,13 +60,48 @@ Test more models and more runs per test, add an LLM-based judge to compare with 
 
 ## Evidence
 
-![Alerts by rule](images/alerts-by-rule.png)
-![Alert page](images/alert-page.png)
-![Containment page](images/containment-page.png)
-![Injection patterns](images/injection-patterns.png)
-![Outbox before and after](images/outbox-before-after.png)
-![Responder containment](images/responder-containment.png)
-![Results after](images/results-after.png)
-![Result before](images/results-before.png)
+### A detection rule
 ![Rule created](images/rule-created.png)
+
+One of the five detection rules after it was created in Kibana. Each rule searches the agent's log index with a query on the fields the logging wrapper writes, carries severity and OWASP tags, and runs every minute.
+
+### Alerts by rule
+![Alerts by rule](images/alerts-by-rule.png)
+
+Kibana's Alerts page grouped by rule name, showing which rules fired and how often during the attacks.
+
+### One alert in detail
+![Alert page](images/alert-page.png)
+
+A single alert opened in Kibana. It carries the agent's own logged fields, such as the user, session, tool and flags, so an analyst can see why it fired and follow the whole session in Discover using its session ID.
+
+### Widening the injection patterns
+![Injection patterns](images/injection-patterns.png)
+
+The injection phrase rule after I widened the patterns. At first it caught none of Garak's 60 PromptInject prompts, because the patterns expected exact wording. Afterwards its alert count rose from 2 to 63.
+
+### The responder reacting
+![Responder containment](images/responder-containment.png)
+
+The responder window reacting to an attack. About two seconds after the external email alert it blocked email to outside addresses and contained the user. It contained the user again on the bulk lookup alert and only recorded the personal data alert, as the playbook says.
+
+### Containment status and incidents
+![Containment page](images/containment-page.png)
+
+The containment status shows which user and action are blocked and why, and each incident record names the rule, user, session and actions taken. Every block expires on its own.
+
+### Ground truth for the fix
+![Outbox before and after](images/outbox-before-after.png)
+
+The lab's email tool writes a file for each email it sends, so the outbox shows what really happened. Two emails appear during the before run, from the outside-address test and the custom test, and none during the hardened run.
+
+### Before hardening
+![Result before](images/results-before.png)
+
+Results by test, each run three times. The two tests written for this system, the whole department lookup and the email to an outside address, failed in some runs, while the generic prompts missed them.
+
+### After hardening
+![Results after](images/results-after.png)
+
+The same assessment with hardening on. The department lookup and the email to an outside address both passed all three runs. The direct override and the markup echo still fail in some runs, because hardening limits what a tricked agent can do and doesn't stop the model being tricked.
 
