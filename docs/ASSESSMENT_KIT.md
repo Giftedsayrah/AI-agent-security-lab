@@ -1,4 +1,4 @@
-# Add-on for Weeks 9 and 10
+# Add-on
 
 Adds the assessment kit and the shadow AI finder to your existing project folder, and fixes one false alarm in the personal data rule. It only adds files, apart from a small one-time patch to two existing files.
 
