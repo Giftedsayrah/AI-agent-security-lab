@@ -78,7 +78,7 @@ A single alert opened in Kibana. It carries the agent's own logged fields, such 
 ### Widening the injection patterns
 ![Injection patterns](images/injection-patterns.png)
 
-The injection phrase rule after I widened the patterns. At first it caught none of Garak's 60 PromptInject prompts, because the patterns expected exact wording. Afterwards its alert count rose from 2 to 63.
+The injection phrase rule after I widened the patterns. At first it caught none of Garak's 60 PromptInject prompts, because the patterns expected exact wording. 
 
 ### The responder reacting
 ![Responder containment](images/responder-containment.png)
