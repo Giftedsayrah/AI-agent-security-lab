@@ -1,6 +1,6 @@
 # Securing an Agentic AI System: Detection, Containment, Assessment and Hardening
 
-A lab case study by [Your name], [Month Year]
+A lab case study by Oluwaseyi Serah Ojapinwa, 2026.
 
 ## Summary
 
