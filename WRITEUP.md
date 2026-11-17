@@ -39,7 +39,6 @@ The agent can be reached through a chat interface and through the content of the
 | Sensitive information disclosure | LLM02 | AML.T0057 | A request for a department's contact details |
 | Excessive agency | LLM06 | AML.T0053, AML.T0086 | The agent emails those details to an outside address |
 | System prompt leakage | LLM07 | AML.T0056 | A request to repeat or translate the agent's instructions |
-| Improper output handling | LL | none assigned | The agent echoes active markup or an external image link |
 
 The ATLAS identifiers should be checked against atlas.mitre.org before this table is relied on, since the framework changes often.
 
