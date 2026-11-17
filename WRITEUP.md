@@ -18,7 +18,7 @@ The main findings are these:
 
 ## Scope and environment
 
-All testing was carried out against a system I built and own, using synthetic data, on a single machine. The assessment kit refuses non-local targets unless the operator confirms authorisation.
+All testing was carried out against a system I built using synthetic data, on a single machine. The assessment kit refuses non-local targets unless the operator confirms authorisation.
 
 | Component | Detail |
 |---|---|
