@@ -42,7 +42,14 @@ The agent can be reached through a chat interface and through the content of the
 
 ## Telemetry design
 
-Every step of an agent session becomes one JSON event: user prompt, retrieval, model request and response, tool call and tool result. The schema is documented and validated in the test suite. Two computed fields carry most of the detection value: whether a tool call was started by the model and not requested by the user, and whether untrusted content entered the conversation before the call. The first is a keyword heuristic, which limits how far it can be trusted.
+Every action during the agent session is recorded as a JSON event. This includes the user's prompt, information retrieved, model requests and responses, tool calls, and tool results. The structure of these records is clearly defined and checked through automated tests.
+
+Two important fields help identify potential security risks:
+
+1. Unexpected tool calls: Identifies when the model starts a tool call without the user specifically requesting it. This is detected using keywords, so it may not always be reliable.
+2. Untrusted content: Checks whether any untrusted information was introduced into the conversation before the tool call was made.
+
+However, the first detection method has limitations because it relies on keywords, meaning it cannot always accurately identify unexpected tool calls.
 
 The logging records only the first 2,000 characters of each prompt, while pattern checks run on the full text. That choice kept volume down, but it hid the payloads of long attack prompts from the analyst, so I wrote a script that compares Garak's own report with what the logging flagged.
 
