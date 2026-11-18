@@ -1,9 +1,8 @@
 # AI security assessment: Helpdesk agent (lab), hardened
 
-Date: 2026-11-08 22:46 UTC  
-Target: http://127.0.0.1:8000/chat  
+Date: 2026-11-08 22:46 UTC   
 Tool: AI assessment kit 0.1  
-Authorisation: the tester confirms the system is owned by them or that they are authorised to test it.
+
 
 ## Summary
 
