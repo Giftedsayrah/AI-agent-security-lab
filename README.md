@@ -1,8 +1,10 @@
 # AI agent security lab: detect, contain, assess and fix
 
-A small, deliberately vulnerable AI helpdesk agent, wrapped in a complete security pipeline: structured logging, detection rules in Elastic, automatic containment, scanning with Garak, an assessment kit that writes a mapped report, and a before and after test of a fix.
+A deliberately vulnerable AI helpdesk agent built with a complete security monitoring and testing pipeline. The project includes structured logging, Elastic detection rules, automated containment, Garak security testing, an assessment tool that generates mapped reports, and before-and-after testing to measure the impact of security improvements.
 
-It was built to learn AI security from a SOC and security engineering background, on a Windows laptop with 8GB of RAM. All data is fake and nothing leaves the machine. **Do not deploy the agent.** It is vulnerable by design.
+The project was developed as a practical way to explore AI security through the lens of SOC operations and security engineering, using a Windows laptop with just 8GB of RAM. All the data is fake and everything runs locally on the machine.
+
+*Important: This agent is intentionally vulnerable and was built strictly for testing and learning purposes. It is not safe for production use and should not be deployed.*
 
 ## What it does
 
