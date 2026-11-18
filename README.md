@@ -60,7 +60,7 @@ LAB_SETUP_WINDOWS.md   step-by-step setup for Windows with 8GB of RAM
 
 ## Run it
 
-Follow [LAB_SETUP_WINDOWS.md](LAB_SETUP_WINDOWS.md). In short: install Docker Desktop with WSL 2, copy `.env.example` to `.env`, start the stack with `docker compose --profile siem up -d`, set a provider and API key in PowerShell, and start the agent with `python -m agent.main` or `python -m agent.server`. Run the tests with `python -m pytest -q`.
+Follow [LAB_SETUP_WINDOWS.md](LAB_SETUP_WINDOWS.md). 
 
 ## Safety and limits
 
