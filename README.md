@@ -28,7 +28,7 @@ flowchart LR
 
 ## Results in short
 
-Details and caveats are in [WRITEUP.md](WRITEUP.md).
+Details are in [WRITEUP.md](WRITEUP.md).
 
 | Question | Result |
 |---|---|
