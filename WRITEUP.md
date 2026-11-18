@@ -4,7 +4,7 @@ A lab case study by Oluwaseyi Serah Ojapinwa, 2026.
 
 ## Summary
 
-AI agents that can read data and take actions change the security problem. A model that can be persuaded to misbehave is now connected to tools that can disclose information and send messages. This case study documents a lab built to answer a practical question from a defender's point of view: when such an agent is attacked, what can be observed, what can be stopped automatically, and what has to be fixed in the design?
+AI agents that can read data and take actions changes the security problem automatically. A model that can be persuaded to misbehave is now connected to tools that can disclose information and send messages. This case study documents a lab built to answer a practical question from a defender's point of view such as "when such an agent is attacked what can be observed, what can be stopped automatically, and what has to be fixed in the design?"
 
 The lab is a deliberately vulnerable AI helpdesk agent with three tools, running on synthetic data. Around it I built structured telemetry, five detection rules in Elastic, an automatic containment responder, an assessment kit that tests any chatbot with a JSON chat API and reports against OWASP and MITRE ATLAS, and a hardening control, then measured the effect of each.
 
