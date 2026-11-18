@@ -18,9 +18,9 @@ flowchart LR
     F -- "containment state" --> B
 ```
 
-1. **The agent** is built using a simple Python workflow that allows the AI model to interact with three tools: a knowledge-base search, an employee lookup, and a simulated email sender. It supports different AI providers, including Anthropic, Gemini, OpenAI, and Groq.
-2. **Logging** Records every step of the agent's activity as a separate JSON event. This includes user prompts, retrieved information, model requests and responses, tool calls, and their results. Each event follows a documented structure and includes additional fields to help identify potential security risks, such as whether the model initiated a tool call after processing untrusted content.
-3. **Detection** is five Kibana rules mapped to the OWASP Top 10 for LLM Applications and MITRE ATLAS.
+1. **The agent**: is built using a simple Python workflow that allows the AI model to interact with three tools: a knowledge-base search, an employee lookup, and a simulated email sender. It supports different AI providers, including Anthropic, Gemini, OpenAI, and Groq.
+2. **Logging**: Records every step of the agent's activity as a separate JSON event. This includes user prompts, retrieved information, model requests and responses, tool calls, and their results. Each event follows a documented structure and includes additional fields to help identify potential security risks, such as whether the model initiated a tool call after processing untrusted content.
+3. **Detection**: Uses five Kibana detection rules mapped to the OWASP Top 10 for LLM Applications and the MITRE ATLAS framework to identify and monitor potential AI security threats.
 4. **Response**: `responder.py` monitors incoming security alerts and automatically restricts users or blocks risky actions when a threat is detected. The agent checks these restrictions before executing tool calls and refuses any action that violates them. All restrictions expire automatically after a set period.
 5. **Attack testing**: Garak scans the agent through a local web API, and `analyze_garak.py` compares Garak's results with what the logging flagged.
 6. **Assessment kit**: `assess.py` sends 15 safe attack prompts to any chatbot with a JSON chat API, repeats them to measure how often each fails, and writes a report mapped to OWASP, ATLAS and the Nigeria Data Protection Act 2023. `shadow_ai.py` finds AI services in proxy and DNS logs.
