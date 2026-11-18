@@ -162,7 +162,6 @@ The injection phrase rule after I widened the patterns. At first it caught none 
 
 The containment status shows which user and action are blocked and why, and each incident record names the rule, user, session and actions taken. Every block expires on its own.
 
-### Ground truth for the fix
 ![Outbox before and after](images/outbox-before-after.png)
 
 ### Before hardening
