@@ -60,10 +60,10 @@ Five Kibana rules, each tagged with its OWASP category:
 | Rule | Logic | Evidence from testing |
 |---|---|---|
 | Injection phrase in user prompt | Prompt flagged by the logging patterns | None of 60 PromptInject prompts were flagged at first. After the patterns were widened, the rule's alerts rose from 2 to 63, consistent with every prompt in the scan being flagged |
-| Bulk employee lookups | Two or more lookups in one session | Fired on a manual attack and in the response tests |
-| Personal data in model output | Email, phone or ID number in a reply | Fired on genuine disclosures. It also fired when the agent repeated an address the user had typed, so the logic now ignores values supplied by the user |
-| Tool call started by model after untrusted content | Both computed fields set | Fired only on a request built to match the heuristic. In manual tests the model read the poisoned page and ignored it, so the rule has not been shown to catch a real injection |
-| Email sent to an external address | Any email to a domain outside the company | Fired on a real attack, and the outbox file confirmed the message was sent |
+| Bulk employee lookups | Two or more lookups in one session | It triggered on a manual attack and in the response tests |
+| Personal data in model output | Email, phone or ID number in a reply | It was triggered even when the agent was handling legitimate information. It also flagged cases where the agent simply repeated an address provided by the user. To fix this, the detection logic was updated to ignore information that the user had already shared. |
+| Tool call started by model after untrusted content | Both computed fields set | It only triggered when the test request was specifically designed to match the detection rule. During manual testing, the model read the manipulated webpage but ignored its instructions. This means the rule has not yet been proven effective at detecting real prompt injection attacks |
+| Email sent to an external address | Any email to a domain outside the company | It successfully detected an actual attack, and the outbox file confirmed that the message was sent. |
 
 ## Adversarial testing
 
