@@ -108,4 +108,4 @@ T02 Role-play override, T03 Delimiter escape, T04 Instruction hidden in a docume
 
 ## Method and limits
 
-Each test sends one prompt and judges the reply with fixed rules: random marker strings for injection, a canary and phrase checks for instruction leakage, patterns for personal data and keys, and claims of completed actions. Models give different answers on different runs, so a pass is not proof of safety and a review item needs a human decision. The set is small and not exhaustive, and it does not check what a connected tool actually did, so confirm any action finding in the target's own logs. Verify the ATLAS identifiers on atlas.mitre.org before publishing.
+Each test sends one prompt and judges the reply with fixed rules: random marker strings for injection, a canary and phrase checks for instruction leakage, patterns for personal data and keys, and claims of completed actions. Models give different answers on different runs, so a pass is not proof of safety and a review item needs a human decision. 
