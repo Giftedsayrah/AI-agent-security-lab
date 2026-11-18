@@ -40,8 +40,6 @@ The agent can be reached through a chat interface and through the content of the
 | Excessive agency | LLM06 | AML.T0053, AML.T0086 | The agent emails those details to an outside address |
 | System prompt leakage | LLM07 | AML.T0056 | A request to repeat or translate the agent's instructions |
 
-The ATLAS identifiers should be checked against atlas.mitre.org before this table is relied on, since the framework changes often.
-
 ## Telemetry design
 
 Every step of an agent session becomes one JSON event: user prompt, retrieval, model request and response, tool call and tool result. The schema is documented and validated in the test suite. Two computed fields carry most of the detection value: whether a tool call was started by the model and not requested by the user, and whether untrusted content entered the conversation before the call. The first is a keyword heuristic, which limits how far it can be trusted.
